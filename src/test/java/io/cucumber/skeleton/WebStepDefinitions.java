@@ -9,6 +9,9 @@ import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 
+import java.util.Iterator;
+import java.util.List;
+
 public class WebStepDefinitions {
 
     /**
@@ -36,7 +39,7 @@ public class WebStepDefinitions {
 
     @Given("I go to the home page")
     public void iGoToTheHomePage() {
-        driver.get("https://www.xtralife.com/");
+        driver.get("https://tinkerwatches.com/");
     }
 
     @Then("I should see a {string} button/text")
@@ -44,6 +47,11 @@ public class WebStepDefinitions {
         By byXPath = By.xpath("//*[contains(text(),'" + text + "')]");
         boolean present = driver.findElements(byXPath).size() > 0;
         Assertions.assertTrue(present);
+    }
+
+    @And("I wait for {long} milliseconds")
+    public void iWaitFor(long milliseconds) throws InterruptedException {
+        Thread.sleep(milliseconds);
     }
 
     @Then("I should see a {string} form")
@@ -55,17 +63,19 @@ public class WebStepDefinitions {
 
     @When("I click on {string} button")
     public void iClickOnButton(String button_text) {
-        driver.findElement(By.linkText(button_text)).click();
+        driver.findElement(By.xpath(".//button[contains(.,'"+button_text+"')]")).click();
     }
 
+    //click on text <a href>
     @When(("I click on {string} text"))
     public void iClickOnElement(String element_text) {
-        driver.findElement(By.xpath("//*[text()='" + element_text + "']")).click();
+        WebElement webElement = driver.findElement(By.xpath(".//*[contains(.,'"+element_text+"')]"));
+        webElement.click();
     }
 
     @And("I write on form {string} the text {string}")
     public void IEnterTextOnForm(String formElement, String text) {
-        WebElement element = driver.findElement(By.xpath("//*[text()='" + formElement + "']"));
+        WebElement element = driver.findElement(By.id(formElement));
         element.sendKeys(text);
     }
 

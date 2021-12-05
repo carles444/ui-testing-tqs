@@ -3,12 +3,22 @@ Feature: Tests a page LogIn
 
   Scenario: Can see LogIn and SignUp section
     Given I go to the home page
-    When I click on " Acceder " text
-    Then I should see a " Acceder | Registrarme " text
+    When I click on "Menu" button
+    And I wait for 1500 milliseconds
 
-  Scenario: Entering wrong password shape
+    When I click on "Sign In" text
+    Then I should see a "Login" text
+
+  Scenario: Bad LogIn test
     Given I go to the home page
-    When I click on " Acceder " text
-    And I write on form "email" the text "abcd@gmail.com"
-    And I write on form "Contraseña" the text "patata"
-    Then I should see a "La constraseña debe tener al menos 8 caracteres" text
+    And I wait for 200 milliseconds
+    When I click on "Español" text
+    When I click on "Menú" text
+    And I click on "Cuenta" text
+    And I write on form "form-input-identity" the text "carlesandreu4@gmail.com"
+    And I write on form "form-input-credential" the text "hola"
+    And I wait for 500 milliseconds
+    And I click on "Iniciar Sessión" text
+
+    And I wait for 2000 milliseconds
+    Then I should see a "No podemos identificar esta combinación de correo electrónico y contraseña" text
