@@ -36,7 +36,7 @@ public class WebStepDefinitions {
 
     @Given("I go to the home page")
     public void iGoToTheHomePage() {
-        driver.get("https://www.oubiti.com");
+        driver.get("https://www.xtralife.com/");
     }
 
     @Then("I should see a {string} button/text")
@@ -46,9 +46,27 @@ public class WebStepDefinitions {
         Assertions.assertTrue(present);
     }
 
+    @Then("I should see a {string} form")
+    public void iShouldSeeAForm(String text) {
+        By byXPath = By.xpath("//*[contains(text(),'" + text + "')]");
+        boolean present = driver.findElements(byXPath).size() > 0;
+        Assertions.assertTrue(present);
+    }
+
     @When("I click on {string} button")
     public void iClickOnButton(String button_text) {
         driver.findElement(By.linkText(button_text)).click();
+    }
+
+    @When(("I click on {string} text"))
+    public void iClickOnElement(String element_text) {
+        driver.findElement(By.xpath("//*[text()='" + element_text + "']")).click();
+    }
+
+    @And("I write on form {string} the text {string}")
+    public void IEnterTextOnForm(String formElement, String text) {
+        WebElement element = driver.findElement(By.xpath("//*[text()='" + formElement + "']"));
+        element.sendKeys(text);
     }
 
     @And("I take a screenshot with filename {string}")
