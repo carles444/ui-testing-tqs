@@ -10,8 +10,34 @@ Feature: Tests a page LogIn
 
   Scenario: Bad email LogIn test
     Given I go to the home page
-    #When I wait for 5000 milliseconds
-    #And I close "close" window
+    And I click on "Menu" button
+    And I wait for 500 milliseconds
+    And I click on "Sign In" href with link "/account/"
+    And I wait for 1000 milliseconds
+    And I write on form "CustomerEmail" the text "patata@gmail.com"
+    And I wait for 500 milliseconds
+    And I write on form "CustomerPassword" the text "patata"
+    And I wait for 500 milliseconds
+    And I submit "customer_login" form
+    And I wait for 500 milliseconds
+    Then I should see a "Incorrect email or password." text
+
+  Scenario: Bad password LogIn test
+    Given I go to the home page
+    And I click on "Menu" button
+    And I wait for 500 milliseconds
+    And I click on "Sign In" href with link "/account/"
+    And I wait for 1000 milliseconds
+    And I write on form "CustomerEmail" the text "carlesandreu4@gmail.com"
+    And I wait for 500 milliseconds
+    And I write on form "CustomerPassword" the text "sdflkjdf"
+    And I wait for 500 milliseconds
+    And I submit "customer_login" form
+    And I wait for 500 milliseconds
+    Then I should see a "Incorrect email or password." text
+
+  Scenario: Correct log in
+    Given I go to the home page
     And I click on "Menu" button
     And I wait for 500 milliseconds
     And I click on "Sign In" href with link "/account/"
@@ -22,4 +48,4 @@ Feature: Tests a page LogIn
     And I wait for 500 milliseconds
     And I submit "customer_login" form
     And I wait for 500 milliseconds
-    Then I should see a "Incorrect email or password." text
+    Then I should see a "Mi cuenta" text
