@@ -42,16 +42,13 @@ public class WebStepDefinitions {
         driver.get("https://tinkerwatches.com/");
     }
 
+    //---------------------------------------------SEE-------------------------------------------------//
+
     @Then("I should see a {string} button/text")
     public void iShouldSeeAButton(String text) {
         By byXPath = By.xpath("//*[contains(text(),'" + text + "')]");
         boolean present = driver.findElements(byXPath).size() > 0;
         Assertions.assertTrue(present);
-    }
-
-    @And("I wait for {long} milliseconds")
-    public void iWaitFor(long milliseconds) throws InterruptedException {
-        Thread.sleep(milliseconds);
     }
 
     @Then("I should see a {string} form")
@@ -61,28 +58,54 @@ public class WebStepDefinitions {
         Assertions.assertTrue(present);
     }
 
-    @When("I click on {string} button")
-    public void iClickOnButton(String button_text) {
-        driver.findElement(By.xpath(".//button[contains(.,'"+button_text+"')]")).click();
-    }
 
-    //click on text <a href>
-    @When(("I click on {string} text"))
-    public void iClickOnElement(String element_text) {
-        WebElement webElement = driver.findElement(By.xpath(".//*[contains(.,'"+element_text+"')]"));
-        webElement.click();
-    }
-
+    //------------------------------------------WRITE-------------------------------------------------//
     @And("I write on form {string} the text {string}")
     public void IEnterTextOnForm(String formElement, String text) {
         WebElement element = driver.findElement(By.id(formElement));
         element.sendKeys(text);
     }
 
+
+
+    //------------------------------------------CLICKS-------------------------------------------------//
+    @When("I click on {string} button")
+    public void iClickOnButton(String button_text) {
+        driver.findElement(By.xpath(".//button[contains(.,'"+button_text+"')]")).click();
+    }
+
+    @When(("I click on {string} text"))
+    public void iClickOnElement(String element_text) {
+        WebElement webElement = driver.findElement(By.xpath(".//*[contains(.,'"+element_text+"')]"));
+        webElement.click();
+    }
+
+    @When(("I click on {string} href with link {string}"))
+    public void iClickOnHref(String name, String link) {
+        driver.findElement(By.xpath("//a[@href='"+link+"']")).click();
+    }
+
+    @When(("I submit {string} form"))
+    public void iClickOnSubmit(String value) {
+        driver.findElement(By.id(value)).submit();
+    }
+
+    @When(("I close {string} window"))
+    public  void iCloseWindow(String name) {
+        driver.findElement(By.className(name)).click();
+    }
+
+
+    //-----------------------------------------------------------------------------------------------//
     @And("I take a screenshot with filename {string}")
     public void iTakeAScreenshotWithFilename(String filename) {
         byte[] screenshot = ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
         scenario.attach(screenshot, "image/png", "filename");
+    }
+
+    @And("I wait for {long} milliseconds")
+    public void iWaitFor(long milliseconds) throws InterruptedException {
+        Thread.sleep(milliseconds);
     }
 
     @AfterAll()
