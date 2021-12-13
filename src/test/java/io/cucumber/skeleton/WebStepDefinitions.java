@@ -39,7 +39,7 @@ public class WebStepDefinitions {
 
     @Given("I go to the home page")
     public void iGoToTheHomePage() {
-        driver.get("https://www.eneba.com/es");
+        driver.get("https://www.dominospizza.es/");
     }
 
     //---------------------------------------------SEE-------------------------------------------------//
@@ -107,6 +107,12 @@ public class WebStepDefinitions {
         webElement.click();
     }
 
+    @When(("I click on {string} text by class {string}"))
+    public void iClickOnElementByClass(String element_text, String cssClass) {
+        cssClass = "." + cssClass;
+        driver.findElement(By.className(cssClass)).click();
+    }
+
     @When(("I click on {string} href with link {string}"))
     public void iClickOnHref(String name, String link) {
         driver.findElement(By.xpath("//a[@href='"+link+"']")).click();
@@ -122,6 +128,11 @@ public class WebStepDefinitions {
         String cssClass = "." + value;
         driver.findElement(By.cssSelector(cssClass)).click();
 
+    }
+
+    @When(("I submit id {string} form"))
+    public void iClickOnSubmitById(String value) {
+        driver.findElement(By.id(value)).submit();
     }
 
     @When(("I submit name {string} form"))
