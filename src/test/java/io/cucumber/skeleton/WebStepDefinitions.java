@@ -8,6 +8,7 @@ import io.cucumber.java.en.When;
 import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.Select;
 
 import java.util.Iterator;
 import java.util.List;
@@ -40,6 +41,12 @@ public class WebStepDefinitions {
     @Given("I go to the home page")
     public void iGoToTheHomePage() {
         driver.get("https://www.dominospizza.es/");
+    }
+
+    @Given("I log in")
+    public void iLogIn() {
+        iGoToTheHomePage();
+        iClickOnButton("INICIAR PEDIDO");
     }
 
     //---------------------------------------------SEE-------------------------------------------------//
@@ -84,6 +91,13 @@ public class WebStepDefinitions {
 
 
     //------------------------------------------CLICKS-------------------------------------------------//
+    @When(("I select name {string} value {string}"))
+    public void iClickSelectOption(String name,String value) {
+        Select drop= new Select(driver.findElement(By.name(name)));
+        drop.selectByValue(value);
+
+    }
+
     @When("I click on {string} text button")
     public void iClickOnButtonText(String button_text) {
         driver.findElement(By.xpath(".//button[contains(.,'"+button_text+"')]")).click();
@@ -104,6 +118,12 @@ public class WebStepDefinitions {
     @When(("I click on {string} text"))
     public void iClickOnElement(String element_text) {
         WebElement webElement = driver.findElement(By.xpath(".//*[contains(.,'"+element_text+"')]"));
+        webElement.click();
+    }
+
+    @When(("I click on {string} text with id {string}"))
+    public void iClickOnElement(String element_text, String id) {
+        WebElement webElement = driver.findElement(By.id(id));
         webElement.click();
     }
 
@@ -157,6 +177,11 @@ public class WebStepDefinitions {
     @And("I wait for {long} milliseconds")
     public void iWaitFor(long milliseconds) throws InterruptedException {
         Thread.sleep(milliseconds);
+    }
+
+    @And("I refresh")
+    public void iRefresh() {
+        driver.navigate().refresh();
     }
 
     @AfterAll()
