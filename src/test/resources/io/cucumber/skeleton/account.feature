@@ -1,31 +1,85 @@
-Feature: Tests Promotions Section
+Feature: Tests account
 
-  Scenario: submit no promotional code
+  Scenario: test data is correct
     Given I go to the home page
-    When I click on "Promociones" href with link "/promociones"
-    Then I should see a "¿Qué tipo de oferta quieres?" text
-    When I submit id "personal-data-form" form
-    Then I should see a "A domicilio" text
+    When I click by css selector " span[class='name'] "
+    And I write on input name "usuario" the text "carlesandreu4@gmail.com"
+    And I wait for 500 milliseconds
+    And I write on input name "password" the text "torreblanca"
+    And I wait for 500 milliseconds
+    And I click on "Ok" text with id "btnLoginMenu"
+    And I wait for 1500 milliseconds
+    Then I should see a "CARRER SANT ENRIC, 17" text
+    Then I should see a "696526476" text
+    Then I should see a "carlesandreu4@gmail.com" text
+    When I click on "Mis Datos" text with id "AmiDominosDatos"
+    Then I should see a "Carles" text
+    Then I should see a "Andreu" text
+    Then I should see a "9 de febrero de 2000" text
+    Then I should see a "•••••••••" text
+    When I click by css selector " span[class='name'] "
+    And I click on "Cerrar sesión" text with id "btCerrarSesion"
+    And I click on "Si" text with id "yes"
 
-  Scenario: submit bad promotional code
-    Given I go to the home page
-    When I click on "Promociones" href with link "/promociones"
-    Then I should see a "¿Qué tipo de oferta quieres?" text
-    When I write on input name "codigoPromocional" the text "asdf"
-    And I submit id "personal-data-form" form
-    Then I should see a "¿Estás registrado?" text
 
-  Scenario: clicking a product without logging in
+  Scenario: test change surname
     Given I go to the home page
-    When I click on "Promociones" href with link "/promociones"
-    Then I should see a "¿Qué tipo de oferta quieres?" text
-    When I click on "Quiero" text
-    Then I should see a "¿Estás registrado?" text
+    And I wait for 1500 milliseconds
+    When I click by css selector " span[class='name'] "
+    And I write on input name "usuario" the text "carlesandreu4@gmail.com"
+    And I wait for 500 milliseconds
+    And I write on input name "password" the text "torreblanca"
+    And I wait for 500 milliseconds
+    And I click on "Ok" text with id "btnLoginMenu"
+    And I wait for 1500 milliseconds
+    And I click on "Mis Datos" text with id "AmiDominosDatos"
+    And I click on "Editar datos" text with id "editarDatos"
+    And I write on input name "apellido" the text "Torreblanca"
+    And I write on input name "_password" the text "torreblanca"
+    And I write on input name "_repeat_password" the text "torreblanca"
+    And I click on "Guardar cambios" text with id "savePersonalData"
+    And I click on "Mis Datos" text with id "AmiDominosDatos"
+    Then I should see a "Torreblanca" text
+    And I wait for 1500 milliseconds
+    And I click on "Mis Datos" text with id "AmiDominosDatos"
+    And I click on "Editar datos" text with id "editarDatos"
+    And I write on input name "apellido" the text "Andreu"
+    And I write on input name "_password" the text "torreblanca"
+    And I write on input name "_repeat_password" the text "torreblanca"
+    And I click on "Guardar cambios" text with id "savePersonalData"
+    And I wait for 1500 milliseconds
+    And I click on "Mis Datos" text with id "AmiDominosDatos"
+    Then I should see a "Andreu" text
+    When I click by css selector " span[class='name'] "
+    And I click on "Cerrar sesión" text with id "btCerrarSesion"
+    And I click on "Si" text with id "yes"
 
-  Scenario: A recoger section
+  Scenario: test add new direction
     Given I go to the home page
-    When I click on "Promociones" href with link "/promociones"
-    And I click on "A recoger" text
-    Then I should see a "A recoger" text
-    When I click on "Quiero" text
-    Then I should see a "¿Estás registrado?" text
+    And I wait for 1500 milliseconds
+    When I click by css selector " span[class='name'] "
+    And I write on input name "usuario" the text "carlesandreu4@gmail.com"
+    And I wait for 500 milliseconds
+    And I write on input name "password" the text "torreblanca"
+    And I wait for 500 milliseconds
+    And I click on "Ok" text with id "btnLoginMenu"
+    And I wait for 1500 milliseconds
+    And I click on "Mis Datos" text with id "AmiDominosDatos"
+    And I click on "Añadir nueva dirección" text with id "addAddress"
+    And I wait for 1500 milliseconds
+    And I select name "IdProvinciaSeleccionada" value "8"
+    And I wait for 500 milliseconds
+    And I select name "IdLocalidadSeleccionada" value "80266"
+    And I wait for 500 milliseconds
+    And I write on input id "tags" the text "carrer prat de la riba"
+    And I wait for 500 milliseconds
+    And I write on input id "Direccion_NumeroCalle" the text "63"
+    And I wait for 500 milliseconds
+    And I write on input name "Direccion_NumeroPiso" the text "4"
+    And I wait for 500 milliseconds
+    And I write on input name "Direccion_NumeroPuerta" the text "b"
+    And I wait for 500 milliseconds
+    And I click on "Guardar" text with id "GuardarDireccion"
+    When I click on "Mis Datos" text with id "AmiDominosDatos"
+    Then I should see a "CARRER PRAT DE LA RIBA, 63" text
+

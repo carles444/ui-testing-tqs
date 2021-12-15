@@ -5,6 +5,7 @@ import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -88,7 +89,12 @@ public class WebStepDefinitions {
         element.sendKeys(text);
     }
 
+    @When(("I select id {string} value {string}"))
+    public void iClickSelectOptionById(String name,String value) {
+        Select drop= new Select(driver.findElement(By.id(name)));
+        drop.selectByValue(value);
 
+    }
 
     //------------------------------------------CLICKS-------------------------------------------------//
     @When(("I select name {string} value {string}"))
@@ -166,8 +172,17 @@ public class WebStepDefinitions {
         driver.findElement(By.className(name)).click();
     }
 
-
+    @When("I click by css selector {string}")
+    public  void iClickByClass(String cssSelector) {
+        WebElement actionBtn = driver.findElement(By.cssSelector(cssSelector));
+        actionBtn.click();
+    }
     //-----------------------------------------------------------------------------------------------//
+    @When(("I {string} the {string} ingredient with class {string}"))
+    public void addElement(String name, String ingredientName, String className) {
+        WebElement webElement = driver.findElement(By.xpath("//li[@data-ing='"+ingredientName+"']"));
+        webElement.findElement(By.cssSelector(className)).findElement(By.xpath("[not(text())]")).click();    }
+
     @And("I take a screenshot with filename {string}")
     public void iTakeAScreenshotWithFilename(String filename) {
         byte[] screenshot = ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
@@ -183,6 +198,8 @@ public class WebStepDefinitions {
     public void iRefresh() {
         driver.navigate().refresh();
     }
+
+
 
     @AfterAll()
     public static void tearDown() {
