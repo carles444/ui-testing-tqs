@@ -118,4 +118,5 @@ Feature:
     And I write on input id "year" the text "1997"
     And I write on input name "tlf" the text "671953609"
     And I write on input name "email" the text "charly251097@gmail.com"
+    And I wait for 2000 milliseconds
     Then I should see a "Datos de envío y pago" text

@@ -26,6 +26,8 @@ Feature: Tests a page LogIn
     And I click on "Añadir esta pizza" text button
     And I wait for 1000 milliseconds
     Then I should see an alert saying "Hemos añadido esta pizza a tu pedido"
+    And I wait for 1000 milliseconds
+    And Restart
     And I wait for 3000 milliseconds
 
   Scenario: Iniciar pedido sin regitrar domicilio
@@ -53,6 +55,8 @@ Feature: Tests a page LogIn
     And I wait for 1000 milliseconds
     Then I should see an alert saying "Hemos añadido esta pizza a tu pedido"
     And I wait for 3000 milliseconds
+    And Restart
+    And I wait for 3000 milliseconds
 
 
 
@@ -78,6 +82,8 @@ Feature: Tests a page LogIn
     And I click on "Añadir esta pizza" text button
     And I wait for 1000 milliseconds
     Then I should see an alert saying "Hemos añadido esta pizza a tu pedido"
+    And I wait for 1000 milliseconds
+    And Restart
     And I wait for 3000 milliseconds
 
   Scenario: Iniciar pedido registrado a domicilio
@@ -102,6 +108,8 @@ Feature: Tests a page LogIn
     And I click on "Añadir esta pizza" text button
     And I wait for 1000 milliseconds
     Then I should see an alert saying "Hemos añadido esta pizza a tu pedido"
+    And I wait for 1000 milliseconds
+    And Restart
     And I wait for 3000 milliseconds
 
 
@@ -138,6 +146,8 @@ Feature: Tests a page LogIn
     And I wait for 1000 milliseconds
     Then I should see an alert saying "Hemos añadido esta pizza a tu pedido"
     And I wait for 3000 milliseconds
+    And Restart
+    And I wait for 3000 milliseconds
 
   Scenario: Iniciar pedido registrado otra direccion
     Given I go to the home page
@@ -170,4 +180,6 @@ Feature: Tests a page LogIn
     And I click on "Añadir esta pizza" text button
     And I wait for 1000 milliseconds
     Then I should see an alert saying "Hemos añadido esta pizza a tu pedido"
+    And I wait for 1000 milliseconds
+    And Restart
     And I wait for 3000 milliseconds
