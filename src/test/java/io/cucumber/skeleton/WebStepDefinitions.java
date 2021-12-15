@@ -30,7 +30,7 @@ public class WebStepDefinitions {
         // This property is optional.
         // If not specified, WebDriver searches the path for chromedriver in your environment variables
         // Example path for Linux or Mac:
-        System.setProperty("webdriver.chrome.driver", "C:/Users/googleDriver/chromedriver.exe");
+        System.setProperty("webdriver.chrome.driver", "/usr/local/bin/chromedriver");
         driver = new ChromeDriver();
     }
 
@@ -160,7 +160,15 @@ public class WebStepDefinitions {
         drop.selectByValue(value);
 
     }
-
+    @When(("I click on {string} text with id {string}"))
+    public void iClickOnElement(String element_text, String id) {
+        WebElement webElement = driver.findElement(By.id(id));
+        webElement.click();
+    }
+    @When(("I submit id {string} form"))
+    public void iClickOnSubmitById(String value) {
+        driver.findElement(By.id(value)).submit();
+    }
     @When(("I click on {string} href with link {string}"))
     public void iClickOnHref(String name, String link) {
 
@@ -206,6 +214,12 @@ public class WebStepDefinitions {
     public void iWaitFor(long milliseconds) throws InterruptedException {
         Thread.sleep(milliseconds);
     }
+    @And("I delete input name {string} text")
+    public void iDeleteInputText(String name) {
+        WebElement element = driver.findElement(By.name(name));
+        element.clear();
+    }
+
 
     @AfterAll()
     public static void tearDown() {
