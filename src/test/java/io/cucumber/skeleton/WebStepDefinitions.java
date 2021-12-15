@@ -222,6 +222,7 @@ public class WebStepDefinitions {
     public void iWaitFor(long milliseconds) throws InterruptedException {
         Thread.sleep(milliseconds);
     }
+
     @And("I delete input name {string} text")
     public void iDeleteInputText(String name) {
         WebElement element = driver.findElement(By.name(name));
