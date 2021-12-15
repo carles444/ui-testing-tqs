@@ -5,3 +5,4 @@ target/test-classes/io/cucumber/skeleton/login.feature
 target/test-classes/io/cucumber/skeleton/WebStepDefinitions.class
 target/test-classes/io/cucumber/skeleton/login.feature
 src/test/java/io/cucumber/skeleton/WebStepDefinitions.java
+.idea/runConfigurations.xml

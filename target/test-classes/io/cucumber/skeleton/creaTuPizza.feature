@@ -1,4 +1,4 @@
-Feature: Tests a page LogIn
+Feature: Tests crea tu pizza
   It will test the add product in cart
 
 
@@ -46,6 +46,7 @@ Feature: Tests a page LogIn
     And I wait for 3000 milliseconds
     Then I should see a "Margarita" text
     And I wait for 3000 milliseconds
+    And I restart session
 
   Scenario: Crear una pizza al gusto version 2
     Given I go to the home page
@@ -97,6 +98,7 @@ Feature: Tests a page LogIn
     And I wait for 3000 milliseconds
     Then I should see a "Margarita" text
     And I wait for 3000 milliseconds
+    And I restart session
 
 
   Scenario: Crear una pizza al gusto version 3
@@ -146,4 +148,5 @@ Feature: Tests a page LogIn
     And I wait for 3000 milliseconds
     Then I should see a "Margarita" text
     And I wait for 3000 milliseconds
+    And I restart session
 

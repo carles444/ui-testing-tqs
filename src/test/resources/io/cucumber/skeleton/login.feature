@@ -12,6 +12,7 @@ Feature: Tests a page LogIn
     And I submit id "register-form" form
     And I wait for 1000 milliseconds
     Then I should see a "Sus datos de acceso no son correctos" text
+    And I restart session
 
   Scenario: Bad password LogIn test
     Given I go to the home page
@@ -24,6 +25,7 @@ Feature: Tests a page LogIn
     And I submit id "register-form" form
     And I wait for 1000 milliseconds
     Then I should see a "Sus datos de acceso no son correctos" text
+    And I restart session
 
   Scenario: Correct log in
     Given I go to the home page
@@ -42,3 +44,4 @@ Feature: Tests a page LogIn
     When I click by css selector " span[class='name'] "
     And I click on "Cerrar sesión" text with id "btCerrarSesion"
     And I click on "Si" text with id "yes"
+    And I restart session

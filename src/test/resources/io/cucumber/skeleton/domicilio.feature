@@ -1,8 +1,5 @@
-Feature: Tests a page LogIn
+Feature: Tests a domicilio service
   It will test the add product in cart
-
-
-
 
 
   Scenario: Pedir pizza a domicilio sin registro error calle
@@ -27,6 +24,7 @@ Feature: Tests a page LogIn
 
     Then I should see an alert saying "La calle no esta entre las opciones posibles"
     And I wait for 3000 milliseconds
+    And I restart session
 
   Scenario: Pedir pizza a domicilio sin registro calle correcta tienda sin servicio adomicilio
     Given I go to the home page
@@ -54,14 +52,15 @@ Feature: Tests a page LogIn
 
     Then I should see an alert saying "Hemos añadido esta pizza a tu pedido"
     And I wait for 3000 milliseconds
+    And I restart session
 
   Scenario: Pedir pizza a domicilio sin registro calle correcta tienda con servicio adomicilio
     Given I go to the home page
-    And I wait for 1000 milliseconds
+    And I wait for 2000 milliseconds
     And I click on "Pizzas" href with link "/carta-de-pizzas"
     And I wait for 1000 milliseconds
     And I click on "Hawaina Cripy" class with link "PizzaContent  "
-    And I wait for 1000 milliseconds
+    And I wait for 2000 milliseconds
     And I click on "Domicilio" text button
     And I wait for 1000 milliseconds
     And I select name "IdProvinciaSeleccionada" value "8"
@@ -78,6 +77,7 @@ Feature: Tests a page LogIn
     And I wait for 1000 milliseconds
     Then I should see an alert saying "Hemos añadido esta pizza a tu pedido"
     And I wait for 1000 milliseconds
+    And I restart session
 
 
 
