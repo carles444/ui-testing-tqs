@@ -20,6 +20,7 @@ Feature: Tests account
     When I click by css selector " span[class='name'] "
     And I click on "Cerrar sesión" text with id "btCerrarSesion"
     And I click on "Si" text with id "yes"
+    And I restart session
 
 
   Scenario: test change surname
@@ -55,6 +56,7 @@ Feature: Tests account
     When I click by css selector " span[class='name'] "
     And I click on "Cerrar sesión" text with id "btCerrarSesion"
     And I click on "Si" text with id "yes"
+    And I restart session
 
   Scenario: test add new direction
     Given I go to the home page
@@ -88,3 +90,4 @@ Feature: Tests account
     When I click by css selector " span[class='name'] "
     And I click on "Cerrar sesión" text with id "btCerrarSesion"
     And I click on "Si" text with id "yes"
+    And I restart session

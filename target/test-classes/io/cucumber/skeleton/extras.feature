@@ -1,4 +1,4 @@
-Feature: Tests a page LogIn
+Feature: Tests extra products
   It will test the add product in cart
 
 
@@ -30,6 +30,7 @@ Feature: Tests a page LogIn
     And I click on "Añadir entrante" text button
     And I wait for 1000 milliseconds
     Then I should see an alert saying "Hemos añadido este entrante a tu pedido"
+    And I restart session
 
 
 
@@ -62,6 +63,7 @@ Feature: Tests a page LogIn
     And I click on "Añadir postre" text button
     And I wait for 1000 milliseconds
     Then I should see an alert saying "Hemos añadido este postre a tu pedido"
+    And I restart session
 
 
 
@@ -94,6 +96,7 @@ Feature: Tests a page LogIn
     And I click on "Añadir bebida" text button
     And I wait for 10000 milliseconds
     Then I should see an alert saying "Hemos añadido esta bebida a tu pedido"
+    And I restart session
 
 
 

@@ -6,6 +6,7 @@ Feature: Tests Promotions Section
     Then I should see a "¿Qué tipo de oferta quieres?" text
     When I submit id "personal-data-form" form
     Then I should see a "A domicilio" text
+    And I restart session
 
   Scenario: submit bad promotional code
     Given I go to the home page
@@ -21,6 +22,7 @@ Feature: Tests Promotions Section
     Then I should see a "¿Qué tipo de oferta quieres?" text
     When I click on "Quiero" text
     Then I should see a "¿Estás registrado?" text
+    And I restart session
 
   Scenario: A recoger section
     Given I go to the home page
@@ -29,3 +31,4 @@ Feature: Tests Promotions Section
     Then I should see a "A recoger" text
     When I click on "Quiero" text
     Then I should see a "¿Estás registrado?" text
+    And I restart session

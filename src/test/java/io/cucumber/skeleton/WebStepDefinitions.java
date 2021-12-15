@@ -6,6 +6,7 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import io.cucumber.java.eo.Se;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -30,7 +31,7 @@ public class WebStepDefinitions {
         // This property is optional.
         // If not specified, WebDriver searches the path for chromedriver in your environment variables
         // Example path for Linux or Mac:
-        System.setProperty("webdriver.chrome.driver", "C:/Users/googleDriver/chromedriver.exe");
+        System.setProperty("webdriver.chrome.driver", "/usr/local/bin/chromedriver");
         driver = new ChromeDriver();
     }
 
@@ -134,7 +135,6 @@ public class WebStepDefinitions {
     @When(("I submit name {string} form"))
     public void iClickOnSubmitByName(String value) {
         driver.findElement(By.name(value)).click();
-
     }
 
     @When(("I close {string} window"))
@@ -220,10 +220,21 @@ public class WebStepDefinitions {
         element.clear();
     }
 
-
+    @And("I refresh")
+    public void iRefresh() {
+        driver.navigate().refresh();
+    }
     @AfterAll()
     public static void tearDown() {
         driver.quit();
     }
 
+    @And("I restart session")
+    public static void restartDriver() {
+        driver.manage().deleteAllCookies();         // Clear Cookies on the browser
+        driver.quit();
+        driver = null;
+        driver = new ChromeDriver();
+
+    }
 }
