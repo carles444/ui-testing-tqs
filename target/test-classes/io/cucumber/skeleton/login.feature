@@ -3,8 +3,9 @@ Feature: Tests a page LogIn
 
   Scenario: Can see LogIn and SignUp section
     Given I go to the home page
-    When I click on "ig-responsive-menu-button" button
-    And I wait for 500 milliseconds
+    When I wait for 5000 milliseconds
+    And I click on "ig-responsive-menu-button" button
+    And I wait for 8000 milliseconds
     And I click on "Mi cuenta" href with link "#"
     And I wait for 1000 milliseconds
     Then I should see a "Ya tengo una cuenta en IG" text
@@ -48,3 +49,6 @@ Feature: Tests a page LogIn
     And I submit "customer_login" form
     And I wait for 500 milliseconds
     Then I should see a "Mi cuenta" text
+
+    And I click by css selector " span[class='ico ico-user'] "
+    And I wait for 100000 milliseconds
