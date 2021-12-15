@@ -33,6 +33,7 @@ public class WebStepDefinitions {
         // Example path for Linux or Mac:
         System.setProperty("webdriver.chrome.driver", "/usr/local/bin/chromedriver");
         driver = new ChromeDriver();
+
     }
 
     @Before
@@ -72,6 +73,15 @@ public class WebStepDefinitions {
     }
 
     //------------------------------------------WRITE-------------------------------------------------//
+
+    @And("Restart")
+    public void Restart(){
+        driver.manage().deleteAllCookies();         // Clear Cookies on the browser
+        driver.close();
+        driver = null;
+        driver = new ChromeDriver();
+        driver.get("https://www.dominospizza.es/");
+    }
     @And("Scroll down {string}")
     public void ScrollDown(String pixels){
         JavascriptExecutor js = (JavascriptExecutor) driver;
@@ -190,8 +200,6 @@ public class WebStepDefinitions {
     public  void iClickByClass(String cssSelector){
         WebElement actionBtn=driver.findElement(  By.cssSelector(cssSelector));
         actionBtn.click();
-
-
 
     }
     @When(("I click on {string} class with link {string}"))

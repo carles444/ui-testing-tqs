@@ -2,7 +2,7 @@ Feature: add to Cart
   It will test the add product in cart
 
 
-  Scenario: Pedir pizza para recoger
+  Scenario: Order pizza to pick up
     Given I go to the home page
     And I wait for 500 milliseconds
     And I click on "ACEPTAR" text button
