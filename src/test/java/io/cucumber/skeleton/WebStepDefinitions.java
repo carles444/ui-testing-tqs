@@ -5,9 +5,11 @@ import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import io.cucumber.java.eo.Se;
 import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.Select;
 
 import java.util.Iterator;
 import java.util.List;
@@ -28,7 +30,7 @@ public class WebStepDefinitions {
         // This property is optional.
         // If not specified, WebDriver searches the path for chromedriver in your environment variables
         // Example path for Linux or Mac:
-        System.setProperty("webdriver.chrome.driver", "/usr/local/bin/chromedriver");
+        System.setProperty("webdriver.chrome.driver", "C:/Users/googleDriver/chromedriver.exe");
         driver = new ChromeDriver();
     }
 
@@ -39,7 +41,7 @@ public class WebStepDefinitions {
 
     @Given("I go to the home page")
     public void iGoToTheHomePage() {
-        driver.get("https://www.eneba.com/es");
+        driver.get("https://www.dominospizza.es/");
     }
 
     //---------------------------------------------SEE-------------------------------------------------//
@@ -69,6 +71,12 @@ public class WebStepDefinitions {
     }
 
     //------------------------------------------WRITE-------------------------------------------------//
+    @And("Scroll down {string}")
+    public void ScrollDown(String pixels){
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        js.executeScript("window.scrollBy(0,"+pixels+")", "");
+    }
+
     @And("I write on input id {string} the text {string}")
     public void IEnterTextOnForm(String formElement, String text) {
         WebElement element = driver.findElement(By.id(formElement));
@@ -84,6 +92,8 @@ public class WebStepDefinitions {
 
 
     //------------------------------------------CLICKS-------------------------------------------------//
+
+
     @When("I click on {string} text button")
     public void iClickOnButtonText(String button_text) {
         driver.findElement(By.xpath(".//button[contains(.,'"+button_text+"')]")).click();
@@ -107,10 +117,7 @@ public class WebStepDefinitions {
         webElement.click();
     }
 
-    @When(("I click on {string} href with link {string}"))
-    public void iClickOnHref(String name, String link) {
-        driver.findElement(By.xpath("//a[@href='"+link+"']")).click();
-    }
+
 
     @When(("I submit {string} form"))
     public void iClickOnSubmit(String value) {
@@ -126,7 +133,7 @@ public class WebStepDefinitions {
 
     @When(("I submit name {string} form"))
     public void iClickOnSubmitByName(String value) {
-        driver.findElement(By.name(value)).submit();
+        driver.findElement(By.name(value)).click();
 
     }
 
@@ -135,6 +142,58 @@ public class WebStepDefinitions {
         driver.findElement(By.className(name)).click();
     }
 
+    @When(("I select name {string} value {string}"))
+    public void iClickSelectOption(String name,String value) {
+        Select drop= new Select(driver.findElement(By.name(name)));
+        drop.selectByValue(value);
+
+    }
+    @When(("I select class {string} value {string}"))
+    public void iClickSelectOptionByClass(String name,String value) {
+        Select drop= new Select(driver.findElement(By.className(name)));
+        drop.selectByValue(value);
+
+    }
+    @When(("I select id {string} value {string}"))
+    public void iClickSelectOptionById(String name,String value) {
+        Select drop= new Select(driver.findElement(By.id(name)));
+        drop.selectByValue(value);
+
+    }
+
+    @When(("I click on {string} href with link {string}"))
+    public void iClickOnHref(String name, String link) {
+
+        if (!driver.findElements(By.xpath("//a[@href='"+link+"']")).isEmpty() ){
+            driver.findElement(By.xpath("//a[@href='"+link+"']")).click();
+        };
+    }
+    @When(("I click input by valuee {string}"))
+    public void iClickOnClasss(String link) {
+        //WebElement drop=  driver.findElement(By.id(link));
+        //drop.click();
+        driver.findElement(By.xpath("//li[@data-entrante-type='"+link+"']")).click();
+
+        //driver.findElement(By.id(link)).click();
+
+
+    }
+    @When("I click by css selector {string}")
+    public  void iClickByClass(String cssSelector){
+        WebElement actionBtn=driver.findElement(  By.cssSelector(cssSelector));
+        actionBtn.click();
+
+
+
+    }
+    @When(("I click on {string} class with link {string}"))
+    public void iClickOnClass(String name, String link) {
+        String cssClass = "." + link;
+        driver.findElement(By.cssSelector(cssClass)).click();
+
+        if (!driver.findElements(By.cssSelector(link)).isEmpty() ){
+        };
+    }
 
     //-----------------------------------------------------------------------------------------------//
     @And("I take a screenshot with filename {string}")
