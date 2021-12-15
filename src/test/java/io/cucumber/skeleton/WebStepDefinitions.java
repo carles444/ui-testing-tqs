@@ -95,6 +95,11 @@ public class WebStepDefinitions {
         drop.selectByValue(value);
 
     }
+    @And("I delete input name {string} text")
+    public void iDeleteInputText(String name) {
+        WebElement element = driver.findElement(By.name(name));
+        element.clear();
+    }
 
     //------------------------------------------CLICKS-------------------------------------------------//
     @When(("I select name {string} value {string}"))

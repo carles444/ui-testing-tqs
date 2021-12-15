@@ -34,6 +34,7 @@ Feature: Tests account
     And I wait for 1500 milliseconds
     And I click on "Mis Datos" text with id "AmiDominosDatos"
     And I click on "Editar datos" text with id "editarDatos"
+    And I delete input name "apellido" text
     And I write on input name "apellido" the text "Torreblanca"
     And I write on input name "_password" the text "torreblanca"
     And I write on input name "_repeat_password" the text "torreblanca"
@@ -43,6 +44,7 @@ Feature: Tests account
     And I wait for 1500 milliseconds
     And I click on "Mis Datos" text with id "AmiDominosDatos"
     And I click on "Editar datos" text with id "editarDatos"
+    And I delete input name "apellido" text
     And I write on input name "apellido" the text "Andreu"
     And I write on input name "_password" the text "torreblanca"
     And I write on input name "_repeat_password" the text "torreblanca"
@@ -80,6 +82,9 @@ Feature: Tests account
     And I write on input name "Direccion_NumeroPuerta" the text "b"
     And I wait for 500 milliseconds
     And I click on "Guardar" text with id "GuardarDireccion"
+    And I wait for 4000 milliseconds
     When I click on "Mis Datos" text with id "AmiDominosDatos"
-    Then I should see a "CARRER PRAT DE LA RIBA, 63" text
-
+    Then I should see a "CARRER PRAT DE LA RIBA" text
+    When I click by css selector " span[class='name'] "
+    And I click on "Cerrar sesión" text with id "btCerrarSesion"
+    And I click on "Si" text with id "yes"
